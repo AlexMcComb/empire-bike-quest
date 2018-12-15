@@ -3,40 +3,44 @@
 var MOCK_JOB_REQUESTS = {
 	"jobRequests": [
         {
-            "id": "1111111",
             "Company": "Green Hub",
             "companyId": "aaaaaa",
             "Description": "30 letters weighing 1lb",
             "pickupLocation":"75 9th Ave, New York, NY 10011",
             "dropoffLocation":"131 W 3rd St, New York, NY 10012",
-            "publishedAt": 1470016976609
+            "publishedAt": 1470016976609,
+            "messenger":  "John",
+            "comment": "arriving in 20 mins."
         },
         {
-            "id": "2222222",
             "Company": "Blue Hub",
             "companyId": "bbbbbb",
             "Description": "1 box 3x3 in. 2lbs",
             "pickupLocation":"228 Park Ave S, New York, NY 10003",
             "dropoffLocation":"126 2nd Ave, New York, NY 10003",
-            "publishedAt": 1470012976609
+            "publishedAt": 1470012976609,
+            "messenger":  "Jeff",
+            "comment": "arriving in 10 mins."
         },
         {
-            "id": "333333",
             "Company": "Orange Hub",
             "companyId": "oooooo",
             "Description": "1 box 5x3 in. 4lbs",
             "pickupLocation":"151 W 46th St, New York, NY 10036",
             "dropoffLocation":"205 E 99th St, New York, NY 10029",
-            "publishedAt": 1470011976609
+            "publishedAt": 1470011976609,
+            "messenger":  "Tim",
+            "comment": "arriving in 10 mins."
         },
         {
-            "id": "4444444",
             "Company": "Purple Hub",
             "companyId": "ppppppp",
-            "Description": "2 boxex 2x3 in. 6lbs",
+            "Description": "2 boxes 2x3 in. 6lbs",
             "pickupLocation":"1000 5th Ave, New York, NY 10028",
             "dropoffLocation":"Second Ave. bet. E. 59 St. to, E 60th St, New York, NY 10022",
-            "publishedAt": 1470009976609
+            "publishedAt": 1470009976609,
+            "messenger":  "Tim",
+            "comment": "left with Kathy at front desk"
         }
     ]
 };
