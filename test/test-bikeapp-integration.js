@@ -29,18 +29,12 @@ function seedJobData() {
   return Job.insertMany(seedData);
 }
 
-function generateCompanyName() {
-  const company = [
-    'Green Leaf', 'On Point', '10 Degrees', 'Bobs'];
-    return company[Math.floor(Math.random() * company.length)];
-}
-
 // generate an object represnting a job.
 // can be used to generate seed data for db
 // or request.body data
 function generateJobData() {
   return {
-    company: generateCompanyName(),
+    company: faker.company.companyName(),
     description: faker.lorem.sentence(),
     messenger: faker.name.firstName(),
     comment: faker.lorem.sentence(),
@@ -94,7 +88,6 @@ describe('Jobs API resource', function() {
       //    2. prove res has right status, data type
       //    3. prove the number of jobs we got back is equal to number
       //       in db.
-      //
       // need to have access to mutate and access `res` across
       // `.then()` calls below, so declare it here so can modify in place
       let res;
