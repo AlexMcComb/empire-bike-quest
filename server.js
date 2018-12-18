@@ -38,6 +38,18 @@ app.get("/jobs", (req, res) => {
     });
 });
 
+// can also request by ID
+app.get('/jobs/:id', (req, res) => {
+  Job
+    // this is a convenience method Mongoose provides for searching
+    // by the object _id property
+    .findById(req.params.id)
+    .then(job => res.json(job.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
 
 //Allow user to post a job
 app.post("/jobs", (req, res) => {
@@ -54,8 +66,10 @@ app.post("/jobs", (req, res) => {
   Job.create({
     company: req.body.company,
     description: req.body.description,
+    messenger: req.body.messenger,
     pickup: req.body.pickup,
     dropoff: req.body.dropoff,
+    comment: req.body.comment
   })
     .then(job => res.status(201).json(job.serialize()))
     .catch(err => {
@@ -66,7 +80,7 @@ app.post("/jobs", (req, res) => {
 
 //Allow user to update, and also allows messenger to add their name and optional comment
 app.put('/jobs/:id', (req, res) => {
-
+  // ensure that the id in the request path and the one in request body match
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message = (
       `Request path id (${req.params.id}) and request body id ` +
@@ -97,6 +111,11 @@ app.delete('/jobs/:id', (req, res) => {
     .findByIdAndRemove(req.params.id)
     .then(() => res.status(204).end())
     .catch(err => res.status(500).json({message: 'Internal server error'}));
+});
+
+// catch-all endpoint if client makes request to non-existent endpoint
+app.use('*', function (req, res) {
+  res.status(404).json({ message: 'Not Found' });
 });
 
 // closeServer needs access to a server object, but that only
