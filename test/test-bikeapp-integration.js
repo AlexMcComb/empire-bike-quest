@@ -4,6 +4,7 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 const faker = require("faker");
 const mongoose = require("mongoose");
+mongoose.set('useFindAndModify', false);
 
 // this makes the expect syntax available throughout
 // this module
@@ -99,7 +100,7 @@ describe('Jobs API resource', function() {
           expect(res).to.have.status(200);
           // otherwise our db seeding didn't work
           expect(res.body.jobs).to.have.lengthOf.at.least(1);
-          return Job.count();
+          return Job.countDocuments();
         })
         .then(function(count) {
           expect(res.body.jobs).to.have.lengthOf(count);

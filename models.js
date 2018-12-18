@@ -21,7 +21,6 @@ jobSchema.methods.serialize = function() {
       id: this._id,
       company: this.company,
       description: this.description,
-      borough: this.borough,
       messenger: this.messenger,
       comment: this.comment,
       pickup: this.pickup,
