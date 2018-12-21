@@ -2,6 +2,11 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const morgan = require("morgan");
+const cors = require("cors");
+const bodyParser = require('body-parser');
+const app = express();
+
 
 // Mongoose internally uses a promise-like object,
 // but its better to make Mongoose use built in es6 promises
@@ -13,11 +18,19 @@ mongoose.Promise = global.Promise;
 const { PORT, DATABASE_URL } = require("./config");
 const { Job } = require("./models");
 
-const app = express();
+
 app.use(express.json());
+app.use(morgan('tiny'));
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //serve the static client side files from the "public" folder
 app.use(express.static("public"));
+
+
+
+
 
 // GET requests to /jobs => return 10 jobs
 app.get("/jobs", (req, res) => {
