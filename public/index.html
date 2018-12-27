@@ -7,19 +7,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="mapbox.css">
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
-		
+
+		<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.0/mapbox-gl-directions.js'></script>
+		<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.0/mapbox-gl-directions.css' type='text/css' />
+
 	<div class="container">
-			<button onclick="showJobs()">Add a Job</button>
-		<form action="http://localhost:8080/jobs" method="POST" onsubmit="setTimeout(function () { window.location.reload(); }, 10)" id="jobForm">
+		<div class="row">
+			<div class="col-25">
+				<button onclick="showJobs()">Add a Job</button>
+			</div>
+		</div>
+		<form action="http://localhost:8080/jobs" method="POST" onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
+		 id="jobForm">
 			<div class="row">
 				<div class="col-25">
 					<label for="company">Company</label>
 				</div>
 				<div class="col-75">
-					<input type="text" id="company" name="company" placeholder="Your comapny..">
+					<input type="text" id="company" name="company" placeholder="Your comapny.." required>
 				</div>
 			</div>
 			<div class="row">
@@ -27,7 +38,7 @@
 					<label for="description">Description</label>
 				</div>
 				<div class="col-75">
-					<input type="text" id="description" name="description" placeholder="Description of delivery..">
+					<input type="text" id="description" name="description" placeholder="Description of delivery.." required>
 				</div>
 			</div>
 			<div class="row">
@@ -35,7 +46,7 @@
 					<label for="pickup">Pickup Address</label>
 				</div>
 				<div class="col-75">
-					<input type="text" id="pickup" name="pickup" placeholder="Pickup address..">
+					<input type="text" id="pickup" name="pickup" placeholder="Pickup address.." required>
 				</div>
 			</div>
 			<div class="row">
@@ -43,7 +54,7 @@
 					<label for="dropoff">Drop Off Address</label>
 				</div>
 				<div class="col-75">
-					<input type="text" id="dropoff" name="dropoff" placeholder="Drop off address..">
+					<input type="text" id="dropoff" name="dropoff" placeholder="Drop off address.." required>
 				</div>
 			</div>
 			<div class="row">
@@ -51,9 +62,12 @@
 			</div>
 		</form>
 	</div>
-
+	<div id='map'></div>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="mapbox.js"></script>
+
 </body>
 
 </html>

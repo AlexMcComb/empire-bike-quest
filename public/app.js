@@ -31,12 +31,12 @@ function deleteData(item, endPoint) {
 // this function can stay the same even when we
 // are connecting to real API
 function getAndDisplayJobRequests() {
-	getJobRequests(displayJobRequests);
+  getJobRequests(displayJobRequests);
 }
 
 //  on page load do this
 $(function() {
-	getAndDisplayJobRequests();
+  getAndDisplayJobRequests();
 })
 
 function showJobs() {

@@ -2,6 +2,8 @@
   display:none;
 }
 
+#map { position:absolute; top:0; bottom:0; width:20%; }
+
 /* Style inputs, select elements and textareas */
 input[type=text], select{
     width: 70%;
