@@ -12,9 +12,11 @@ var directions = map.addControl(new MapboxDirections({
 
 let pickupLoc;
 
-$(".mapboxgl-ctrl-geocoder input").on("blur",function(){
-  pickupLoc = $( this ).val();
-  $("#pickup")[0].value = pickupLoc; 
+$("ul.suggestions").find("li.active").click(function(){
+  pickupLoc = $(this).text();
+  $("#pickup")[0].value= pickupLoc; 
 });
-
-
+//$(".mapboxgl-ctrl-geocoder input").on("blur",function(){
+  //pickupLoc = $( this ).val();
+  //$("#pickup")[0].value = pickupLoc; 
+//});
