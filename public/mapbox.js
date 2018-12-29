@@ -10,13 +10,45 @@ var directions = map.addControl(new MapboxDirections({
     accessToken: mapboxgl.accessToken
 }));
 
-let pickupLoc;
+function myFunction() {
+  var x = document.getElementById("mapbox-directions-origin-input").querySelector(".mapboxgl-ctrl-geocoder input").value;
+  var y = document.getElementById("mapbox-directions-destination-input").querySelector(".mapboxgl-ctrl-geocoder input").value;
+    console.log(x,y);
+  document.getElementById("pickup").value = x; 
+  document.getElementById("dropoff").value = y;
+};
 
-$("ul.suggestions").find("li.active").click(function(){
-  pickupLoc = $(this).text();
-  $("#pickup")[0].value= pickupLoc; 
-});
-//$(".mapboxgl-ctrl-geocoder input").on("blur",function(){
+
+// function msg(){
+//   pickupLoc =  $("#pic").text();
+//   console.log(pickupLoc);
+//   //$(".mapboxgl-ctrl-geocoder input")[0].text = pickupLoc; 
+// };
+
+//$(".mapboxgl-ctrl-geocoder input").blur(function(){
   //pickupLoc = $( this ).val();
   //$("#pickup")[0].value = pickupLoc; 
+//});
+
+//$(".mapboxgl-ctrl-geocoder").find('ul:visible').click("li").click(function(e) {
+     //alert('hello')
+  //});
+
+  
+//$("mapboxgl-ctrl-geocoder input").click();
+//console.log("valid");
+//var pickupLoc = document.querySelector('li.active a').textContent;
+
+
+//for (var i=0; i < pickupLoc.length; i++) {
+  //pickupLoc[i].onclick = function(){
+      //console.log(pickupLoc);
+  //}
+//};
+
+
+//$(".mapboxgl-ctrl-geocoder ul").click(function(){
+  //pickupLoc = $(this).val();
+  //console.log(pickupLoc);
+  //$("#pickup")[0].text= pickupLoc; 
 //});

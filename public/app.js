@@ -12,11 +12,19 @@ function displayJobRequests(data) {
 	   $('body').append(
         '<p>' + data.jobs[index].company + '</p>',
         '<p>' + data.jobs[index].description + '</p>',
-        '<p>' + data.jobs[index].pickup + '</p>',
+        '<p id="pic">' + data.jobs[index].pickup + '</p>',
         '<p>' + data.jobs[index].dropoff + '</p>',
+        '<input type="button" id="btnss" value="Click me" onclick="msg()">',
         '<br>');
     }
 }
+
+function msg(){
+  pickupLoc =  $("#pic").text();
+  console.log(pickupLoc);
+  //$(".mapboxgl-ctrl-geocoder input")[0].text = pickupLoc; 
+};
+
 
 function deleteData(item, endPoint) {
   fetch(endPoint + '/' + item, {
@@ -47,3 +55,5 @@ function showJobs() {
     x.style.display = "block";
   }
 }
+
+

@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 //serve the static client side files from the "public" folder
 app.use(express.static("public"));

@@ -4,6 +4,8 @@
   "description": "fullstack capstone bike messenger app",
   "main": "server.js",
   "dependencies": {
+    "@mapbox/mapbox-gl-directions": "^4.0.0",
+    "@mapbox/mapbox-gl-geocoder": "^2.3.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.0",
