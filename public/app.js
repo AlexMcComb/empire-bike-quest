@@ -4,20 +4,7 @@ function getJobRequests(callback) {
   $.getJSON(endPoint, callback);
 }
 
-function getAllPostsCall() {
-  $.ajax({
-    url: '/posts',
-    method: 'GET',
-    dataType: 'json',
-    contentType: 'application/json',
-    success: function(posts) {
-      displayAllPostsTemplate(posts);
-      home.style.display = 'block';
-      deletePost();
-      editPostButton();
-    }
-  })
-};
+
 //Display job requests
 function displayJobRequests(data) {
   for (index in data.jobs) {
@@ -26,7 +13,6 @@ function displayJobRequests(data) {
       '<p>' + data.jobs[index].description + '</p>',
       '<p id="pic">'+ data.jobs[index].pickup + '</p>',
       '<p id="drop">' + data.jobs[index].dropoff + '</p>',
-      '<input type="button" id="btnss" value="Click me" onclick=console.log("Hi");',
       '<br>');
   }
 }

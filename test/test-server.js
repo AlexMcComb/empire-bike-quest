@@ -146,9 +146,9 @@ describe('Jobs API resource', function () {
         expect(res.body).to.be.a('array');
         expect(res.body).to.have.lengthOf.at.least(1);
 
-        res.body.forEach(post => {
-          expect(post).to.be.a('object')
-          expect(post).to.include.keys(
+        res.body.forEach(job => {
+          expect(job).to.be.a('object')
+          expect(job).to.include.keys(
               'id', 'company', 'user', 'description', 'messenger', 'comment', 'pickup', 'dropoff');
           });
           resJob = res.body[0];
