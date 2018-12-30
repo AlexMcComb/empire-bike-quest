@@ -10,13 +10,14 @@ var directions = map.addControl(new MapboxDirections({
     accessToken: mapboxgl.accessToken
 }));
 
-function myFunction() {
-  var x = document.getElementById("mapbox-directions-origin-input").querySelector(".mapboxgl-ctrl-geocoder input").value;
-  var y = document.getElementById("mapbox-directions-destination-input").querySelector(".mapboxgl-ctrl-geocoder input").value;
-    console.log(x,y);
-  document.getElementById("pickup").value = x; 
-  document.getElementById("dropoff").value = y;
+//Get the address the user inputs in the map and send it to the form so it can be added to the database
+function getAddressFromMap() {
+  var origin = document.getElementById("mapbox-directions-origin-input").querySelector(".mapboxgl-ctrl-geocoder input").value;
+  var destination = document.getElementById("mapbox-directions-destination-input").querySelector(".mapboxgl-ctrl-geocoder input").value;
+  document.getElementById("pickup").value = origin; 
+  document.getElementById("dropoff").value = destination;
 };
+
 
 
 // function msg(){

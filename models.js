@@ -2,9 +2,13 @@
 
 const mongoose = require("mongoose");
 
+mongoose.Promise = global.Promise;
+
+const {User} = require('./users/models');
 // this is our schema to represent a job
 const jobSchema = mongoose.Schema({
     company: { type: String, required: true },
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     description: { type: String, required: true },
     messenger: { type: String },
     comment: { type: String },
@@ -19,6 +23,7 @@ const jobSchema = mongoose.Schema({
 jobSchema.methods.serialize = function() {
     return {
       id: this._id,
+      user: this.name,
       company: this.company,
       description: this.description,
       messenger: this.messenger,

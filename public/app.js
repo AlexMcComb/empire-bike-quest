@@ -1,29 +1,35 @@
 const endPoint = "http://localhost:8080/jobs"
 
-function getJobRequests(callback){
+function getJobRequests(callback) {
   $.getJSON(endPoint, callback);
 }
 
-
-// this function stays the same when we connect
-// to real API later
-function displayJobRequests(data) {
-    for (index in data.jobs) {
-	   $('body').append(
-        '<p>' + data.jobs[index].company + '</p>',
-        '<p>' + data.jobs[index].description + '</p>',
-        '<p id="pic">' + data.jobs[index].pickup + '</p>',
-        '<p>' + data.jobs[index].dropoff + '</p>',
-        '<input type="button" id="btnss" value="Click me" onclick="msg()">',
-        '<br>');
+function getAllPostsCall() {
+  $.ajax({
+    url: '/posts',
+    method: 'GET',
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function(posts) {
+      displayAllPostsTemplate(posts);
+      home.style.display = 'block';
+      deletePost();
+      editPostButton();
     }
-}
-
-function msg(){
-  pickupLoc =  $("#pic").text();
-  console.log(pickupLoc);
-  //$(".mapboxgl-ctrl-geocoder input")[0].text = pickupLoc; 
+  })
 };
+//Display job requests
+function displayJobRequests(data) {
+  for (index in data.jobs) {
+    $('body').append(
+      '<p>' + data.jobs[index].company + '</p>',
+      '<p>' + data.jobs[index].description + '</p>',
+      '<p id="pic">'+ data.jobs[index].pickup + '</p>',
+      '<p id="drop">' + data.jobs[index].dropoff + '</p>',
+      '<input type="button" id="btnss" value="Click me" onclick=console.log("Hi");',
+      '<br>');
+  }
+}
 
 
 function deleteData(item, endPoint) {
@@ -43,7 +49,7 @@ function getAndDisplayJobRequests() {
 }
 
 //  on page load do this
-$(function() {
+$(function () {
   getAndDisplayJobRequests();
 })
 
@@ -56,4 +62,9 @@ function showJobs() {
   }
 }
 
+// function getDirections(){
+//   var directionsOrigin = document.getElementById("pic").value;
+//   var directionsDestination = document.getElementById("drop").value;
+//   console.log(directionsDestination, directionsOrigin);
+// }
 

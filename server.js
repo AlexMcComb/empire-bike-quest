@@ -1,182 +1,108 @@
-"use strict";
+'use strict';
 
-const express = require("express");
-const mongoose = require("mongoose");
-const morgan = require("morgan");
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const passport = require('passport');
 const cors = require("cors");
 const bodyParser = require('body-parser');
-const app = express();
 
+const {router: usersRouter} = require('./users');
+const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 
-// Mongoose internally uses a promise-like object,
-// but its better to make Mongoose use built in es6 promises
 mongoose.Promise = global.Promise;
 
+const {DATABASE_URL, PORT} = require('./config');
 
-// config.js is where we control constants for entire
-// app like PORT and DATABASE_URL
-const { PORT, DATABASE_URL } = require("./config");
-const { Job } = require("./models");
+const app = express();
 
+app.use(express.static('public'));
 
 app.use(express.json());
+
 app.use(morgan('tiny'));
+
 app.use(cors());
+
 app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-//serve the static client side files from the "public" folder
-app.use(express.static("public"));
+app.use(morgan('common'));
 
+const jobRouter = require('./jobRouter');
 
+app.use('/jobs', jobRouter);
 
-
-
-// GET requests to /jobs => return 10 jobs
-app.get("/jobs", (req, res) => {
-  Job.find()
-    // limit the return
-    .limit(10)
-    // success callback: for each job we got back, we'll
-    // call the `.serialize` instance method we've created in
-    // models.js in order to only expose the data we want the API return.    
-    .then(jobs => {
-      res.json({
-        jobs: jobs.map(job => job.serialize())
-      });
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ message: "Internal server error" });
-    });
+app.use(function(req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+	res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+	if (req.method === 'OPTIONS') {
+		return res.send(204);
+	}
+	next();
 });
 
-// can also request by ID
-app.get('/jobs/:id', (req, res) => {
-  Job
-    // this is a convenience method Mongoose provides for searching
-    // by the object _id property
-    .findById(req.params.id)
-    .then(job => res.json(job.serialize()))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ message: 'Internal server error' });
-    });
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+app.use('/api/users/', usersRouter);
+app.use('/api/auth/', authRouter);
+
+const jwtAuth = passport.authenticate('jwt', {session: false});
+
+app.get('/api/protected', jwtAuth, (req, res) => {
+	return res.json({
+		data: 'rosebud'
+	});
 });
 
-//Allow user to post a job
-app.post("/jobs", (req, res) => {
-  const requiredFields = ["company", "description", "pickup", "dropoff"];
-  for (let i = 0; i < requiredFields.length; i++) {
-    const field = requiredFields[i];
-    if (!(field in req.body)) {
-      const message = `Missing \`${field}\` in request body`;
-      console.error(message);
-      return res.status(400).send(message);
-    }
-  }
-
-  Job.create({
-    company: req.body.company,
-    description: req.body.description,
-    messenger: req.body.messenger,
-    pickup: req.body.pickup,
-    dropoff: req.body.dropoff,
-    comment: req.body.comment
-  })
-    .then(job => res.status(201).json(job.serialize()))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ message: "Internal server error" });
-    });
+app.use('*', (req, res) => {
+  return res.status(404).json({message: 'Not Found'});
 });
 
-//Allow user to update, and also allows messenger to add their name and optional comment
-app.put('/jobs/:id', (req, res) => {
-  // ensure that the id in the request path and the one in request body match
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-    const message = (
-      `Request path id (${req.params.id}) and request body id ` +
-      `(${req.body.id}) must match`);
-    console.error(message);
-    // we return here to break out of this function
-    return res.status(400).json({message: message});
-  }
-
-  const toUpdate = {};
-  const updateableFields = ["company", "description", "pickup", "dropoff", "messenger", "comment"];
-
-  updateableFields.forEach(field => {
-    if (field in req.body) {
-      toUpdate[field] = req.body[field];
-    }
-  });
-
-  Job
-    .findByIdAndUpdate(req.params.id, {$set: toUpdate})
-    .then(job => res.status(204).end())
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
-});
-
-//Allow user to delete job
-app.delete('/jobs/:id', (req, res) => {
-  Job
-    .findByIdAndRemove(req.params.id)
-    .then(() => res.status(204).end())
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
-});
-
-// catch-all endpoint if client makes request to non-existent endpoint
-app.use('*', function (req, res) {
-  res.status(404).json({ message: 'Not Found' });
-});
-
-// closeServer needs access to a server object, but that only
-// gets created when `runServer` runs, so we declare `server` here
-// and then assign a value to it in run so it's accessible outside the function
 let server;
 
 // this function connects to our database, then starts the server
 function runServer(databaseUrl, port = PORT) {
-  return new Promise((resolve, reject) => {
-    mongoose.connect(
-      databaseUrl, {useNewUrlParser: true},
-      err => {
-        if (err) {
-          return reject(err);
-        }
-        server = app
-          .listen(port, () => {
-            console.log(`Your app is listening on port ${port}`);
-            resolve();
-          })
-          .on("error", err => {
-            mongoose.disconnect();
-            reject(err);
-          });
-      }
-    );
-  });
-}
+	return new Promise((resolve, reject) => {
+	  mongoose.connect(
+		databaseUrl, {useNewUrlParser: true},
+		err => {
+		  if (err) {
+			return reject(err);
+		  }
+		  server = app
+			.listen(port, () => {
+			  console.log(`Your app is listening on port ${port}`);
+			  resolve();
+			})
+			.on("error", err => {
+			  mongoose.disconnect();
+			  reject(err);
+			});
+		}
+	  );
+	});
+  }
 
-// this function closes the server, and returns a promise.
-// used in the integration tests.
+// This will close the server
 function closeServer() {
-  return mongoose.disconnect().then(() => {
-    return new Promise((resolve, reject) => {
-      console.log("Closing server");
-      server.close(err => {
-        if (err) {
-          return reject(err);
-        }
-        resolve();
-      });
-    });
-  });
+	return mongoose.disconnect().then(() => {
+		return new Promise((resolve, reject) => {
+			console.log("Closing server");
+			server.close(err => {
+				if (err) {
+					return reject(err);
+				}
+				resolve();
+			});
+		});
+	});
 }
 
-// if server.js is called directly (aka, with `node server.js`), this block
-// runs, but I export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
   runServer(DATABASE_URL).catch(err => console.error(err));
 }
