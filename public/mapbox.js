@@ -1,14 +1,19 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleG1jYyIsImEiOiJjam5pMWdtN3gwanQ1M3BxdDVuZGlyZXdkIn0.SlU2gCqByEwsz0pt7ocg8A';
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
-    center: [-79.4512, 43.6568],
-    zoom: 13
+
+var directions = new MapboxDirections({
+  accessToken: mapboxgl.accessToken,
+  unit: 'metric',
+  profile: 'mapbox/cycling'
 });
 
-var directions = map.addControl(new MapboxDirections({
-    accessToken: mapboxgl.accessToken
-}));
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v9',
+  center: [-79.4512, 43.6568],
+  zoom: 13
+});
+
+map.addControl(directions, 'top-left');
 
 //Get the address the user inputs in the map and send it to the form so it can be added to the database
 function getAddressFromMap() {
