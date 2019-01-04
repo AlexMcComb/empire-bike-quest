@@ -1,9 +1,73 @@
-*{box-sizing: border-box;}
+*{
+  box-sizing: border-box;
+}
 
 body, html {
-  height: 97.5%;
+  height: 100%;
   margin: 0;
   font-family: 'Sarabun', sans-serif;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: right;
+  padding: 15px;
+}
+
+.catch h1{
+  padding-top: 10%;
+  font-size: 50px;
+  color: white;
+  line-height: 70px;
+}
+
+.button {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  padding: 8px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  background-color:#5DBCD2;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: #0099cc;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
 }
 
 .bg { 
@@ -18,6 +82,7 @@ body, html {
   background-size: cover;
   }
 
+/* Nav Bar */
 .topnav {
   background-color: rgb(66, 104, 143);
   overflow: hidden;
@@ -26,8 +91,21 @@ body, html {
   z-index: 1;
 }
 
+.topnav h1{
+  display: inline-block;
+  color:white;
+}
+
+.topnav h4{
+  display: inline-block;
+  color: white;
+  margin-left: 5%;
+}
+
 /* Style the links inside the navigation bar */
 .topnav a{
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
   float: right;
   display: block;
   color: white;
@@ -61,58 +139,14 @@ body, html {
   width: 50px;
 }
 
-p {
-  margin: 0;
-  font-size: 54px;
-  color: white;
-  position: absolute;
-  top: 24%;
-  left: 40%;
-  white-space: pre;
-}
-
-.button {
-  background-color:#5DBCD2;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;  
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 10px;
-}
-
-.companySignup{
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  margin: 0;
-  position: absolute;
-  top: 60%;
-  left: 40%;
-}
-
-.messengerSignup{
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  margin: 0;
-  position: absolute;
-  top: 60%;
-  left: 58%;
-}
-
 .companySignup:hover, .messengerSignup:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-  #jobForm{
+  jobForm{
   display:none;
 }
 
-h1{
-  float: left;
-  color:white;
-}
 
 #map { top:50%; bottom:0; width:100%; position: absolute;  width:400px;
   height:500px;}
@@ -121,7 +155,7 @@ h1{
 /* The Modal */
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -140,7 +174,7 @@ input[type=text], input[type=password] {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  padding-top: 20vh;
+  padding-top: 10vh;
 }
 
 /* Modal Content/Box */
@@ -245,247 +279,91 @@ legend {
 	padding-left: 10px;
 	line-height: 2.15em;
 }
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 51%;}
+  
+}
+}
 
 
-  @media screen and (min-width: 2350px) {
-    p {
-      margin: 0;
-      font-size: 65px;
-      color: white;
-      position: absolute;
-      top: 24%;
-      left: 40%;
-      white-space: pre;
-    }
-    
-    .button {
-      background-color:#5DBCD2;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;  
-      font-size: 30px;
-      cursor: pointer;
-      border-radius: 10px;
-    }
-    
-    .companySignup{
-      -webkit-transition-duration: 0.4s; /* Safari */
-      transition-duration: 0.4s;
-      margin: 0;
-      position: absolute;
-      top: 68%;
-      left: 40%;
-    }
-    
-    .messengerSignup{
-      -webkit-transition-duration: 0.4s; /* Safari */
-      transition-duration: 0.4s;
-      margin: 0;
-      position: absolute;
-      top: 68%;
-      left: 55%;
-    }
-    .modal-content {
+@media screen and (max-width: 2560px) and (min-width: 1441px){
+  .modal-content {
       width: 25%; /* Could be more or less, depending on screen size */
-    }
-  }
-
-  @media screen and (max-width: 1255px) {
-    .companySignup{
-      top: 55%;
-      left: 40%;
-    }
-    
-    .messengerSignup{
-      top: 55%;
-      left: 65%;
-    }
-  }
-
-  @media screen and (max-width: 835px) {
-    .topnav h1{
-      display:none;
-    }
-    .topnav a:not(:first-child) {display: none;}
-    .topnav a.icon {
-      float: right;
-      display: block;
-    }
-    .topnav.responsive {position: relative;}
-    .topnav.responsive a.icon {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .topnav.responsive a {
-      float: none;
-      display: block;
-      text-align: left;
-      font-size: 16px;
-    }
-    .logo{
-      width:40px;
-      margin: 18px;
-    }
-
-    p {
-      font-size: 40px;
-      color: white;
-      position: absolute;
-      top: 35%;
-      left: 43%;
-      margin-right: 5px;
-      transform: translate(-50%, -50%);
-      white-space: pre;
-    }
-
-    .button {
-      background-color:#5DBCD2;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 10px;
-     
-    }
-    
-    .companySignup{
-      position: absolute;
-      top: 63%;
-      left: 28%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%) 
-    }
-    
-    .messengerSignup{
-      position: absolute;
-      top: 55%;
-      left: 24%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%) 
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    .topnav h1{
-      display:none;
-    }
-    .topnav a:not(:first-child) {display: none;}
-    .topnav a.icon {
-      float: right;
-      display: block;
-    }
-    .topnav.responsive {position: relative;}
-    .topnav.responsive a.icon {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .topnav.responsive a {
-      float: none;
-      display: block;
-      text-align: left;
-      font-size: 16px;
-    }
-    .logo{
-      width:40px;
-      margin: 18px;
-    }
-   p {
-      font-size: 26px;
-      color: white;
-      position: absolute;
-      top: 35%;
-      left: 43%;
-      margin-right: 5px;
-      transform: translate(-50%, -50%);
-      white-space: pre;
-    }
-    .button {
-      background-color:#5DBCD2;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 14px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 10px;
-     
-    }
-    
-    .companySignup{
-      -webkit-transition-duration: 0.4s; /* Safari */
-      transition-duration: 0.4s;
-      left: 50%;
-      margin-top: 15px;
-    }
-    
-    .messengerSignup{
-      -webkit-transition-duration: 0.4s; /* Safari */
-      transition-duration: 0.4s;
-      left: 50%;
-    }
-
-    .modal-content {
-      width: 80%; /* Could be more or less, depending on screen size */
-    }
-    
-  }
-
-  @media screen and (max-width: 320px) {
-    p {
-      font-size: 25px;
-      color: white;
-      position: absolute;
-      top: 35%;
-      left: 48%;
-      margin-right: 5px;
-      transform: translate(-50%, -50%);
-      white-space: pre;
-    }
-    .button {
-      background-color:#5DBCD2;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 12px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 10px;
-     
-    }
-    
-    .companySignup{
-      -webkit-transition-duration: 0.4s; /* Safari */
-      transition-duration: 0.4s;
-      position: absolute;
-      top: 67%;
-      left: 31%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%) 
-    }
-    
-    .messengerSignup{
-      -webkit-transition-duration: 0.4s; /* Safari */
-      transition-duration: 0.4s;
-      position: absolute;
-      top: 55%;
-      left: 23%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%) 
     }
 }
 
+@media screen and (max-width: 768px){
+  .topnav h1, .topnav h4{
+    display:none;
+  }
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+    font-size: 16px;
+  }
+  .logo{
+    width:40px;
+    margin: 18px;
+  }
+  .catch h1{
+    margin-top: 10px;
+    font-size: 30px;
+    color: white;
+    line-height: 50px;
+  }
+  .button{
+    font-size: 17px;
+  }
+
+  .modal-content {
+    width: 90%; /* Could be more or less, depending on screen size */
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .catch h1{
+    margin-top: -10%;
+    font-size: 22px;
+    color: white;
+    line-height: 45px;
+  }
+  .button{
+    font-size: 15px;
+  }
+}

@@ -1,6 +1,6 @@
 'use strict';
 
-function logInTemplate() {
+function logInHtml() {
   return `
     <form id='loginForm' class='modal-content animate' action=''>
       <section class="closeForm">
@@ -16,6 +16,38 @@ function logInTemplate() {
           </label>
           <section class='formButtons'>
             <button class='formSubmitButton' type='submit'>Login</button>
+            <button type='button' class='cancel '>Cancel</button>
+          </section>
+        </section>
+    </form>
+  `
+};
+
+function registerHtml() {
+  return `
+    <form id='registerForm' class='modal-content animate' action=''>
+      <section class="closeForm">
+        <span class="close" title="Close Form">&times;</span>
+      </section>
+        <legend id="registerFieldset">Register</legend>
+        <section class='container'>
+          <label><b>Username</b>
+            <input name='username' id='registerUsername' type='text' placeholder='required' required>
+          </label>
+          <label><b>Password</b>
+            <input minlength='4' maxlength='72' name='password' type='password' id='registerPassword' placeholder='required' required>
+          </label>
+          <label><b>First Name</b>
+            <input name='firstName' type='text' id='registerFirstName' placeholder='optional'>
+          </label>
+          <label><b>Last Name</b>
+            <input name='lastName' type='text' id='registerLastName' placeholder='optional'>
+          </label>
+          <label><b>Email</b>
+            <input name='email' type='email' id='registerEmail' placeholder='optional'>
+          </label>
+          <section class='formButtons'>
+            <button class='formSubmitButton' type='submit'>Register</button>
             <button type='button' class='cancel '>Cancel</button>
           </section>
         </section>
