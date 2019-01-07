@@ -9,8 +9,8 @@ var directions = new MapboxDirections({
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v9',
-  center: [-79.4512, 43.6568],
-  zoom: 13
+  center: [-90.4512, 43.6568],
+  zoom: 2
 });
 
 map.addControl(directions, 'top-left');
@@ -23,38 +23,3 @@ function getAddressFromMap() {
   document.getElementById("dropoff").value = destination;
 };
 
-
-
-// function msg(){
-//   pickupLoc =  $("#pic").text();
-//   console.log(pickupLoc);
-//   //$(".mapboxgl-ctrl-geocoder input")[0].text = pickupLoc; 
-// };
-
-//$(".mapboxgl-ctrl-geocoder input").blur(function(){
-  //pickupLoc = $( this ).val();
-  //$("#pickup")[0].value = pickupLoc; 
-//});
-
-//$(".mapboxgl-ctrl-geocoder").find('ul:visible').click("li").click(function(e) {
-     //alert('hello')
-  //});
-
-  
-//$("mapboxgl-ctrl-geocoder input").click();
-//console.log("valid");
-//var pickupLoc = document.querySelector('li.active a').textContent;
-
-
-//for (var i=0; i < pickupLoc.length; i++) {
-  //pickupLoc[i].onclick = function(){
-      //console.log(pickupLoc);
-  //}
-//};
-
-
-//$(".mapboxgl-ctrl-geocoder ul").click(function(){
-  //pickupLoc = $(this).val();
-  //console.log(pickupLoc);
-  //$("#pickup")[0].text= pickupLoc; 
-//});

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Empire Bike Quest</title>
+  <title>Empire Bike Parcel</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Want to make a delivery? Want to send a delivery? Signup here! ">
@@ -16,76 +16,31 @@
 </head>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.0/mapbox-gl-directions.js'></script>
+		<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.0/mapbox-gl-directions.css' type='text/css' />
 
 <body>
-  <div class="topnav" id="myTopnav">
-    <a href="index.html" style="all: initial; cursor: pointer;"><img src="images/icon.png" a href="index.html" class="logo"
-        id="logo" /></a>
-    <h1>Empire Bike Quest</h1>
-    <a class='messengerLogin'>Messenger Login</a>
-    <a href="javascript:void(0);" class="icon" onclick="mobileMenu()">
+
+  <div class="topnav topnavC" id="myTopnav">
+    <a href = "index.html" style = "all: initial; cursor: pointer;"><img src="images/icon.png" a href="index.html" class="logo" id="logo" /></a>
+    <h1>Empire Bike Parcel</h1>
+    <a class='logout'>Logout</a>
+    <a class="newJob">Add Job</a>
+    <a href="javascript:void(0);" class="icon"  onclick="mobileMenu()">
       <i class="fa fa-bars"></i>
     </a>
   </div>
-
 
 
   <section class='modal forms' aria-live='assertive'>
       <div id='map'></div>
   </section>
 
-  <div class="container">
-    <div class="row">
-    </div>
-    <form action="http:localhost:8080/jobs" method="POST" onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
-      id="jobForm">
-      <div class="row">
-        <div class="col-25">
-          <label for="company">Company</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="company" name="company" placeholder="Your comapny.." required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="description">Description</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="description" name="description" placeholder="Description of delivery.." required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="pickup">Pickup Address</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="pickup" name="pickup" placeholder="Pickup address.." required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="dropoff">Drop Off Address</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="dropoff" name="dropoff" placeholder="Drop off address.." required>
-        </div>
-      </div>
-      <div class="row">
-        <input type="submit" value="Submit">
-      </div>
-    </form>
-  </div>
 
 
-  <a onclick="showJobs()" style="display:none;">Add a Job</a>
-  <a class='loggedIn logout' style="display:none;">Logout</a>
-  <a class='loggedIn myHikesButton' style="display:none;">My Jobs</a>
+  <h1 id='myJobs'>My Jobs</h1>
+  <section class='jobs'></section>
 
-
-
-
-  <script type="text/javascript" src="mapbox.js"></script>`
+  <script type="text/javascript" src="mapbox.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>

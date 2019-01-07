@@ -55,70 +55,103 @@ function registerHtml() {
   `
 };
 
+function newJobForm() {
+  return `
+      <form id='newJobPosts' class='modal-content animate' action=''>
+        <section class="closeForm">
+          <span class="close" title="Close Form">&times;</span>
+        </section>
+          <legend>New Delivery</legend>
+          <section class='container'>
+            <label><b>Company Name</b>
+              <input name='company' id='newCompanyName' type='text' placeholder='required' required>
+            </label>
+            <label><b>Delivery Description</b>
+              <input name='description' id='newDescription' type='text' placeholder='i.e. Number, size, weight of delivery' required>
+            </label>
+            <label><b>Pickup Location</b>
+              <input name='pickup' id='pickup' type='text' placeholder='required, choose on map below' required>
+            </label>
+            <label><b>Dropoff Location</b>
+              <input name='dropoff' id='dropoff' type='text' placeholder='required, choose on map below' required>
+            </label>
+            <section class='formButtons'>
+              <button class='formSubmitButtonJob' type='submit'>Create</button>
+              <button onclick='getAddressFromMap()' class='formSubmitButtonJob' type='button'>Fill Address</button>
+            </section>
+          </section>
+      </form>
+  `
+};
+
+function editJobForm(jobID) {
+  let job = JSON.parse(localStorage.getItem(jobID));
+  return `
+      <form id='editJob' class='modal-content animate' action=''>
+        <section class="imgcontainer">
+          <span class="close" title="Close Form">&times;</span>
+        </section>
+          <legend>Edit Delivery</legend>
+          <section class='container'>
+            <label><b>Company Name</b>
+              <input name='company' id='newCompanyName' type='text' placeholder='required' value='${job.company}' required>
+            </label>
+            <label><b>Delivery Description</b>
+              <input name='description' id='newDescription' type='text' placeholder='i.e. Number, size, weight of delivery' value='${job.description}' required>
+            </label>
+            <label><b>Pickup Location</b>
+              <input name='pickup' id='pickup' type='text' placeholder='required, choose on map below' value='${job.pickup}' required>
+            </label>
+            <label><b>Dropoff Location</b>
+              <input name='dropoff' id='dropoff' type='text' placeholder='required, choose on map below' value='${job.dropoff}' required>
+            </label>
+            <section class='formButtons'>
+              <button class='formSubmitButton' type='submit'>Edit</button>
+              <button type='button' class='cancel '>Cancel</button>
+            </section>
+          </section> 
+      </form>
+  `
+};
+
+function showAllJobs(jobs, username) {
+  let user = '';
+  let jobID = '';
+
+  jobs.forEach(job => {
+    if (username === undefined) {
+      user = job.user;a
+      jobID = job.id;
+    } else {
+      user = username;
+      jobID = job._id;
+    };
+
+    let company = JSON.stringify(`${job.company}`);
+    let description = JSON.stringify(`${job.description}`);
+    let pickup = JSON.stringify(`${job.pickup}`);
+    let dropoff = JSON.stringify(`${job.dropoff}`);
+
+    $('.jobs').prepend(`
+      <section id='jobContent'>
+          <h1>Company:</h1>   <p>${job.company}</p><br>
+          <h1>Description:</h2>   <p>${job.description}</p><br>
+            <h1>Posted By:</h1>   <p>${user}</p><br> 
+            <h1>Pickup:</h1>   <p>${job.pickup}</p><br> 
+            <h1>Dropoff:</h1>   <p>${job.dropoff}</p><br> 
+      </section>
+
+    `);
 
 
-
-// return `
-// <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
-// <link rel="stylesheet" href="mapbox.css">
-
-// <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
-// </head>
-
-// <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.0/mapbox-gl-directions.js'></script>
-// <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-// <a href="index.html" class="active">Home</a>
-
-// <div class="container">
-// <div class="row">
-// </div>
-// <form action="http://localhost:8080/jobs" method="POST" onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
-//  id="jobForm">
-//     <div class="row">
-//         <div class="col-25">
-//             <label for="company">Company</label>
-//         </div>
-//         <div class="col-75">
-//             <input type="text" id="company" name="company" placeholder="Your comapny.." required>
-//         </div>
-//     </div>
-//     <div class="row">
-//         <div class="col-25">
-//             <label for="description">Description</label>
-//         </div>
-//         <div class="col-75">
-//             <input type="text" id="description" name="description" placeholder="Description of delivery.." required>
-//         </div>
-//     </div>
-//     <div class="row">
-//         <div class="col-25">
-//             <label for="pickup">Pickup Address</label>
-//         </div>
-//         <div class="col-75">
-//             <input type="text" id="pickup" name="pickup" placeholder="Pickup address.." required>
-//         </div>
-//     </div>
-//     <div class="row">
-//         <div class="col-25">
-//             <label for="dropoff">Drop Off Address</label>
-//         </div>
-//         <div class="col-75">
-//             <input type="text" id="dropoff" name="dropoff" placeholder="Drop off address.." required>
-//         </div>
-//     </div>
-//     <div class="row">
-//         <input onclick='getAddressFromMap()' type="submit" value="Submit">
-//     </div>
-// </form>
-// </div>
-
-
-// <a onclick="showJobs()" style="display:none;">Add a Job</a>
-// <a class='loggedIn logout' style="display:none;">Logout</a>
-// <a class='loggedIn myHikesButton' style="display:none;">My Jobs</a>
-        
-
-// <div id='map'></div>
-
-// <script type="text/javascript" src="mapbox.js"></script>`
+    if (user === localStorage.getItem('username')) {
+      localStorage.setItem(jobID, JSON.stringify(job));
+      $('#jobContent').append(`
+        <section class='jobsEditDelete formButtons'>
+          <button data-jobId=${jobID} class='deleteJob formSubmitButton'>Delete</button>
+          <button data-jobId=${jobID} data-company=${company} data-description=${description} data-pickup=${pickup} data-dropoff=${dropoff} class='editJob formSubmitButton'>Edit</button>
+        </section>
+      `)
+    };
+  });
+};
