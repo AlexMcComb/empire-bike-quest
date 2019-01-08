@@ -14,14 +14,16 @@ function getAllJobs() {
     method: 'GET',
     dataType: 'json',
     contentType: 'application/json',
-    success: function () {
+    success: function (jobs) {
+      showMessengerJobs(jobs);
       deleteJob();
-      editJobButton();
+      acceptJobButton();
     }
   })
 };
 
 /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+
 function mobileMenu() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -67,6 +69,7 @@ function formXButton() {
 function removeForm() {
   modal.style.display = "none";
   $('.modal-content').remove();
+  $('.modal-content-edits').remove();
 };
 
 // gives localstoarge the login data
@@ -113,7 +116,7 @@ function registerUser(newUserData) {
     contentType: 'application/json',
     success: function () {
       document.getElementById('registerFieldset').remove();
-      $('#registerForm').append(`<h2'>You have been successfully registered!  Please click on company login with your credentials.</h2>`)
+      $('#registerForm').append(`<h2'>You have been successfully registered!  Please login with your credentials.</h2>`)
     },
     error: function (data) {
       let message = 'There was a problem with your form: ' + data.responseText.message;
@@ -172,6 +175,17 @@ $(document).ready(function () {
 });
 
 
+// $(document).ready(function () {
+//   $.ajax({
+//     url: "messenger.html",
+//     success: function () {
+//       $('.topnavC').append(`<h4 id="welcome">Welcome, ${localStorage.getItem('username')}!</h4>`);
+//       getAllJobs();
+//       showMessengerJobs();
+//     }
+//   });
+// });
+
 // Sending the information to the user endpoint
 function userJobs() {
   $.ajax({
@@ -214,6 +228,7 @@ function addNewJob() {
     closeForm();
     modal.style.display = 'block';
     newJobSubmit();
+    $(window.map).resize();
   })
 };
 
@@ -263,8 +278,22 @@ function editJobButton() {
     closeForm();
     modal.style.display = 'block';
     editJobSubmit(jobID);
+    $(window.map).resize();
   });
 };
+
+// //Accept a job
+// function acceptJobButton() {
+//   $('.takeJob').on('click', function (e) {
+//     e.preventDefault();
+//     let jobID = $(this).data('jobid');
+//     $('.forms').append(acceptJobForm(jobID));
+//     closeForm();
+//     modal.style.display = 'block';
+//     $(window.map).resize();
+//   });
+// };
+
 
 // Submit updated job data
 function editJobSubmit(jobID) {
@@ -309,56 +338,57 @@ function putJobData(updateJobData) {
 };
 
 
-// These functions handle the messenger experience 
-// Will open the registration form
-function messengerRegisterUser() {
-  $('.messengerSignup').on('click', function (e) {
-    e.preventDefault();
-    $('.forms').append(registerHtml);
-    closeForm();
-    modal.style.display = 'block';
-    registerSubmit();
-  })
-};
+// // These functions handle the messenger experience 
+// // Will open the registration form
+// function messengerRegisterUser() {
+//   $('.messengerSignup').on('click', function (e) {
+//     e.preventDefault();
+//     $('.forms').append(registerHtml);
+//     closeForm();
+//     modal.style.display = 'block';
+//     registerSubmit();
+//   })
+// };
 
 
-// Open the login form for the messenger
-function messengerLogin() {
-  $('.messengerLogin').on('click', function (e) {
-    e.preventDefault();
-    $('.forms').append(logInHtml);
-    closeForm();
-    modal.style.display = 'block';
-    messengerLogInSubmit();
-  });
-};
+// // Open the login form for the messenger
+// function messengerLogin() {
+//   $('.messengerLogin').on('click', function (e) {
+//     e.preventDefault();
+//     $('.forms').append(logInHtml);
+//     closeForm();
+//     modal.style.display = 'block';
+//     messengerLogInSubmit();
+//   });
+// };
 
-// Will handle logging in for messengers
-function messengerLogInSubmit() {
-  $('form').on('submit', function (e) {
-    e.preventDefault();
-    let formData = {
-      username: $('input[name="username"]').val(),
-      password: $('input[name="password"]').val()
-    };
-    $.ajax({
-      url: '/api/auth/login',
-      method: 'POST',
-      data: JSON.stringify(formData),
-      dataType: 'json',
-      contentType: 'application/json',
-      success: function (data) {
-        loginStorage(data);
-        removeForm();
-        window.location = "index.html";
-      },
-      error: function (data) {
-        let message = 'There was a problem logging in. ' + data.responseText;
-        window.alert(message);
-      }
-    });
-  });
-};
+// // Will handle logging in for messengers
+// function messengerLogInSubmit() {
+//   $('form').on('submit', function (e) {
+//     e.preventDefault();
+//     let formData = {
+//       username: $('input[name="username"]').val(),
+//       password: $('input[name="password"]').val()
+//     };
+//     $.ajax({
+//       url: '/api/auth/login',
+//       method: 'POST',
+//       data: JSON.stringify(formData),
+//       dataType: 'json',
+//       contentType: 'application/json',
+//       success: function (data) {
+//         loginStorage(data);
+//         removeForm();
+//         window.location = "messenger.html";
+//         getAllJobs();
+//       },
+//       error: function (data) {
+//         let message = 'There was a problem logging in. ' + data.responseText;
+//         window.alert(message);
+//       }
+//     });
+//   });
+// };
 
 function deleteJob() {
   $('.deleteJob').on('click', function (e) {
@@ -400,9 +430,9 @@ function logOut() {
 
 function loadInitialListeners() {
   companyLogin();
-  messengerLogin();
+  // messengerLogin();
   companyRegisterUser();
-  messengerRegisterUser();
+  // messengerRegisterUser();
   logOut();
   myJobsButton();
   addNewJob();

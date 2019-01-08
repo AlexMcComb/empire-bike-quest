@@ -9,8 +9,8 @@ var directions = new MapboxDirections({
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v9',
-  center: [-90.4512, 43.6568],
-  zoom: 2
+  center: [-73.986635,40.753826],
+  zoom: 11
 });
 
 map.addControl(directions, 'top-left');
