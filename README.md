@@ -68,5 +68,5 @@ Edit Delivery:
 
 Mobile Version:
 
-![mobile](screenshots/mobile.png | width=414)
+![mobile]<img src = "https://github.com/AlexMcComb/empire-bike-quest/blob/master/screenshots/mobile.png" width="48">
 
