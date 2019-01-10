@@ -13,33 +13,33 @@ Tests were also preformed on all of the endpoints.
 ## Built with:
 
 FrontEnd:
--jQuery
--AJAX
--MapBox
--JavaScript
--HTML / CSS
--Heroku
+- jQuery
+- AJAX
+- MapBox
+- JavaScript
+- HTML / CSS
+- Heroku
 
 Testing:
--Chai	
--Chai-HTTP	
--Mocha
--Travis
--Faker	
+- Chai	
+- Chai-HTTP	
+- Mocha
+- Travis
+- Faker	
 
 User Auth:
--Bcryptjs
--JSON Web Token (JWT)	
--Passport	
--Passport-JWT
--UUID	
+- Bcryptjs
+- JSON Web Token (JWT)	
+- Passport	
+- Passport-JWT
+- UUID	
 
 Backend:
--Express								
--Mongoose				
--Morgan							
--MongoDB							
--mLab									
+- Express								
+- Mongoose				
+- Morgan							
+- MongoDB							
+- mLab									 
 	
 ## Screenshots
 Main Page:
@@ -68,5 +68,5 @@ Edit Delivery:
 
 Mobile Version:
 
-![mobile](screenshots/mobile.png = 414x736)
+![mobile](screenshots/mobile.png | width=414)
 
