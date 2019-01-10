@@ -8,20 +8,6 @@ body, html {
   font-family: 'Sarabun', sans-serif;
 }
 
-/* Floating column for labels: 25% width */
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-/* Floating column for inputs: 75% width */
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
 .row::after {
   content: "";
   clear: both;
@@ -206,7 +192,9 @@ input[type=text], input[type=password], input[type=email] {
   display: inline-block;
   border-radius: 4px;
   border: none;
+  box-sizing: border-box;
 }
+
 
 /* The Modal (background) */
 .modal {
@@ -269,19 +257,6 @@ input[type=text], input[type=password], input[type=email] {
   font-size: 0;
 }
 
-.formSubmitButtonMain {
-	font-size: 17px;
-	background-color:  rgb(66, 104, 143);
-	font-weight:bold;
-	padding: 14px 20px;
-	margin: 8px 0;
-	cursor: pointer;
-  width: 30%;
-  border: none;
-  color: white;
-  border-radius: 10px;
-}
-
 .formSubmitButton {
 	font-size: 17px;
 	background-color:  rgb(66, 104, 143);
@@ -295,19 +270,6 @@ input[type=text], input[type=password], input[type=email] {
   border-radius: 10px;
 }
 
-.formSubmitButtonEdit {
-	font-size: 17px;
-	background-color:  rgb(66, 104, 143);
-	font-weight:bold;
-	padding: 14px 20px;
-	margin: 8px 5px;
-	cursor: pointer;
-  width: 20%;
-  border: none;
-  color: white;
-  border-radius: 10px;
-}
-
 .formSubmitButtonJob {
 	font-size: 17px;
 	background-color:  rgb(66, 104, 143);
@@ -315,7 +277,7 @@ input[type=text], input[type=password], input[type=email] {
 	padding: 14px 20px;
 	margin: 8px 5px;
 	cursor: pointer;
-  width: 20%;
+  width: 40%;
   border: none;
   color: white;
   border-radius: 10px;
@@ -329,7 +291,7 @@ input[type=text], input[type=password], input[type=email] {
 	font-size: 17px;
 	font-weight:bold;
 	padding: 14px 4px;
-	margin: 8px 0;
+	margin: 8px 10px 0px 40px;
 	cursor: pointer;
   width: 20%;
   color: rgb(0, 0, 0);
@@ -379,47 +341,37 @@ legend {
 	line-height: 2.15em;
 }
 @media only screen and (min-width: 600px) {
-  /* For tablets: */
-  .col-s-1 {width: 8.33%;}
-  .col-s-2 {width: 16.66%;}
-  .col-s-3 {width: 25%;}
-  .col-s-4 {width: 33.33%;}
-  .col-s-5 {width: 41.66%;}
   .col-s-6 {width: 50%;}
-  .col-s-7 {width: 58.33%;}
-  .col-s-8 {width: 66.66%;}
-  .col-s-9 {width: 75%;}
-  .col-s-10 {width: 83.33%;}
-  .col-s-11 {width: 91.66%;}
-  .col-s-12 {width: 100%;}
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
 }
 @media only screen and (min-width: 768px) {
-  /* For desktop: */
-  .col-1 {width: 8.33%;}
-  .col-2 {width: 16.66%;}
-  .col-3 {width: 25%;}
-  .col-4 {width: 33.33%;}
-  .col-5 {width: 41.66%;}
+
   .col-6 {width: 51%;}
-  
 }
-}
+
 
 
 @media screen and (max-width: 2560px) and (min-width: 1441px){
   .modal-content {
-      width: 25%; /* Could be more or less, depending on screen size */
+      width: 25%; 
     }
     #map{
       top:615px; 
     }
+    .formSubmitButtonJob {
+      font-size: 15px;
+      padding: 7px 12px;
+      cursor: pointer;
+      width: 20%;
+      border: none;
+      color: white;
+      margin-left: 0%;
+    }
+  
 }
 
 @media screen and (max-width: 768px){
-   .topnav h4{
+
+  .topnav h4{
     display:none;
   }
 
@@ -459,7 +411,7 @@ legend {
 
   .modal-content {
     width: 90%;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .modal-content-edits {
@@ -490,6 +442,7 @@ legend {
   #jobContent h1 {
     font-size: 18px;
   }
+
   .formSubmitButtonJob {
     font-size: 15px;
     padding: 7px 12px;
@@ -497,7 +450,7 @@ legend {
     width: 40%;
     border: none;
     color: white;
-    margin-left: 0%;
+    margin-left: -5%;
   }
 
   .formSubmitButton {
@@ -511,37 +464,38 @@ legend {
   }
 
   #newJobPosts{
-    height:130%;
+    height:900px;
   }
 
   #editJob{
-    height:130%;
+    height:900px;
   }
+
   #myJobs{
     width: 90%;
     font-size: 23px;
   }
 
   #map {
-    top:455px; 
+    top:450px; 
     left: 5%;
     bottom: -25%; 
     width:90%;
   }
   input[type=text], input[type=password], input[type=email] {
-    width: 100%;
+    width: 105%;
     padding: 1px 5px;
-    margin-left: 0%;
+    margin-left: -5%;
     display: inline-block;
     border-radius: 4px;
     border: none;
   }
   label{
-    margin-left: 0%;
+    margin-left: -5%;
   }
 
   #editDirection{
-    margin-left: 5%;
+    margin-left: 2%;
   }
 
   .containerEdit {
@@ -549,7 +503,7 @@ legend {
   }
 
   .containerEdit #pickup{
-    margin-left: 0%;
+    margin-left: -5%;
     width:20%;
   }
 
@@ -569,9 +523,13 @@ legend {
   .button{
     font-size: 15px;
   }
+
+  .cancel {
+    font-size: 15px;
+  }
   #map {
-    top:405px; 
-    bottom: -80%; 
+    top:410px; 
+    bottom: 10%; 
     width:90%;
   }
   /* Full-width input fields */
@@ -597,10 +555,15 @@ label{
 }
 
 #newJobPosts{
-  height:870px;
+  height:800px;
+}
+
+.containerEdit #pickup{
+  margin-left: -15%;
+  width:20%;
 }
 
  #editJob{
-    height:870px;
+    height:810px;
   }
 }
