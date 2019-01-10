@@ -6,22 +6,42 @@ This is a full stack app with user authentication, user endpoints, and allows CR
 
 Tests were also preformed on all of the endpoints.
 
-
-## Built with:
-
-Backend:		User Auth:				Testing:		FrontEnd:
-
--Express		-Bcryptjs				- Chai			-jQuery
--Mongoose		-JSON Web Token (JWT)			-Chai-HTTP		-AJAX
--Morgan			-Passport				-Mocha			-MapBox
--MongoDB		-Passport-JWT				-Travis			-JavaScript
--mLab			-UUID					-Faker			-HTML / CSS
-											-Heroku
-
 ## Demo
 
 - [Live Demo]https://empirebikeparcel.herokuapp.com/
 
+## Built with:
+
+FrontEnd:
+-jQuery
+-AJAX
+-MapBox
+-JavaScript
+-HTML / CSS
+-Heroku
+
+Testing:
+- Chai	
+-Chai-HTTP	
+-Mocha
+-Travis
+-Faker	
+
+User Auth:
+-Bcryptjs
+-JSON Web Token (JWT)	
+-Passport	
+-Passport-JWT
+-UUID	
+
+Backend:							
+
+-Express								
+-Mongoose				
+-Morgan							
+-MongoDB							
+-mLab									
+	
 ## Screenshots
 Main Page:
 
