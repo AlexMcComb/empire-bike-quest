@@ -2,7 +2,7 @@
 
 A delivery based app that gives businesses a platform to post delivery jobs with a map view and autocomplete addresses.  
 
-This is a full stack app with user authentication, user endpoints, and allows CRUD operations for the jobs (create, read, update, delete).
+This is a full stack app with user authentication, user endpoints, and allows CRUD operations for the jobs (create, read, update, delete), and is mobile friendly.
 
 Tests were also preformed on all of the endpoints.
 
@@ -21,7 +21,7 @@ FrontEnd:
 -Heroku
 
 Testing:
-- Chai	
+-Chai	
 -Chai-HTTP	
 -Mocha
 -Travis
@@ -34,8 +34,7 @@ User Auth:
 -Passport-JWT
 -UUID	
 
-Backend:							
-
+Backend:
 -Express								
 -Mongoose				
 -Morgan							
@@ -69,5 +68,5 @@ Edit Delivery:
 
 Mobile Version:
 
-![mobile](screenshots/mobile.png)
+![mobile](screenshots/mobile.png = 414x736)
 
