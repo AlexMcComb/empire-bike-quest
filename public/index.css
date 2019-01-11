@@ -178,10 +178,6 @@ body, html {
   z-index: 1;
 }
 
-
-#newJobPosts{
-  height:1000px;
-}
 /* The Modal */
 
 /* Full-width input fields */
@@ -463,14 +459,6 @@ legend {
     color: white;
   }
 
-  #newJobPosts{
-    height:900px;
-  }
-
-  #editJob{
-    height:900px;
-  }
-
   #myJobs{
     width: 90%;
     font-size: 23px;
@@ -529,7 +517,7 @@ legend {
   }
   #map {
     top:410px; 
-    bottom: 10%; 
+    bottom: -50%; 
     width:90%;
   }
   /* Full-width input fields */
@@ -554,16 +542,8 @@ label{
   margin-top:26px;
 }
 
-#newJobPosts{
-  height:800px;
-}
-
 .containerEdit #pickup{
   margin-left: -15%;
   width:20%;
 }
-
- #editJob{
-    height:810px;
-  }
 }
