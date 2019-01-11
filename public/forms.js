@@ -125,6 +125,7 @@ function showAllJobs(jobs, username) {
       jobID = job._id;
     };
 
+
     let company = JSON.stringify(`${job.company}`);
     let description = JSON.stringify(`${job.description}`);
     let pickup = JSON.stringify(`${job.pickup}`);

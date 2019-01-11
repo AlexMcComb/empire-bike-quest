@@ -217,6 +217,8 @@ function addNewJob() {
     modal.style.display = 'block';
     newJobSubmit();
     $(window.map).resize();
+    $('.jobs').empty();
+    userJobs();
   })
 };
 
@@ -230,9 +232,10 @@ function newJobSubmit() {
       company: $('input[name="company"]').val(),
       description: $('input[name="description"]').val(),
       pickup: $('input[name="pickup"]').val(),
-      dropoff: $('input[name="dropoff"]').val()
+      dropoff: $('input[name="dropoff"]').val(),
     };
     postNewJob(formData);
+    window.location = "company.html";
   })
 };
 
