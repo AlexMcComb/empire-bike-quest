@@ -187,6 +187,11 @@ function userJobs() {
     success: function (res) {
       if (res.jobs.length === 0) {
         $('#myJobs').text(`You haven't added any jobs yet.`);
+        $('<img src="'+ 'images/icon.png' +'">').css({'margin-left': 'auto',
+          'margin-right': 'auto',
+          'display': 'block',
+          'margin-top': '10vh',
+          'height':'35vh'}).appendTo('body');
         myJobsInformer.style.display = 'block';
       } else {
         showAllJobs(res.jobs, res.username);
@@ -234,6 +239,8 @@ function newJobSubmit() {
       pickup: $('input[name="pickup"]').val(),
       dropoff: $('input[name="dropoff"]').val(),
     };
+    let message = 'Thanks for creating a delivery! Please wait for a messenger to accept your job.'
+    window.alert(message);
     postNewJob(formData);
     window.location = "company.html";
   })

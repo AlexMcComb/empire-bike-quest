@@ -104,7 +104,7 @@ function editJobForm(jobID) {
             <input name='dropoff' id='dropoff' type='text' placeholder='required, choose on map below' value='${job.dropoff}' required style="width: 40%;">
             <br>
             <section class='formButtons'>
-              <button onclick='getAddressFromMap()'  class='formSubmitButtonJob' type='submit'>Edit</button>
+              <button onclick='getAddressFromMap()'  class='formSubmitButtonJob' type='submit'>Save</button>
               <button type='button' class='cancel '>Cancel</button>
             </section>
           </section> 
